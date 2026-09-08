@@ -8,13 +8,20 @@
    ```shell
    node server.js
    ```
-  2. 정적 파일(html,css,js) 서버
-    - server.js
-      - server = http.createServer()
-      - server.listen()
+2. 정적 파일(html,css,js) 서버
+   - server.js
+     - server = http.createServer()
+     - server.listen()
 
-    - index.html
-    - reset.css
-    - style.css
-    - client.js
-    
+   - index.html
+    - #app
+     - header
+     - ul#messages
+     - form#chat-form
+       - input#chat-input
+       - button
+   - reset.css
+     - -
+     - ul
+   - style.css
+   - client.js

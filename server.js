@@ -28,14 +28,22 @@ const server = http.createServer((req, res) => {
 
   let pathname;
   try {
-    pathname = decodeURIComponent(new URL(req.url, `http://${req.headers.host || "localhost"}`).pathname);
+    pathname = decodeURIComponent(
+      new URL(req.url, `http://${req.headers.host || "localhost"}`).pathname,
+    );
   } catch {
     res.writeHead(400);
     return res.end("Bad Request");
   }
 
-  const requestedPath = path.resolve(ROOT, `.${pathname === "/" ? "/index.html" : pathname}`);
-  if (requestedPath !== ROOT && !requestedPath.startsWith(`${ROOT}${path.sep}`)) {
+  const requestedPath = path.resolve(
+    ROOT,
+    `.${pathname === "/" ? "/index.html" : pathname}`,
+  );
+  if (
+    requestedPath !== ROOT &&
+    !requestedPath.startsWith(`${ROOT}${path.sep}`)
+  ) {
     res.writeHead(403);
     return res.end("Forbidden");
   }
@@ -46,7 +54,9 @@ const server = http.createServer((req, res) => {
       return res.end("Not Found");
     }
 
-    const contentType = MIME_TYPES[path.extname(requestedPath).toLowerCase()] || "application/octet-stream";
+    const contentType =
+      MIME_TYPES[path.extname(requestedPath).toLowerCase()] ||
+      "application/octet-stream";
     res.writeHead(200, {
       "Content-Type": contentType,
       "Content-Length": stats.size,

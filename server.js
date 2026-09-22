@@ -72,3 +72,23 @@ server.listen(PORT, HOST, () => {
   console.log(`Static server running at http://${HOST}:${PORT}`);
   console.log(`Serving files from ${ROOT}`);
 });
+
+//-------------Welcome WebSocketServer World-------------
+const { WebSocketServer } = require("ws");
+
+// http 서버: 정적 파일(html,css,js,...) 서비스
+// WevbSocket 서버: 실시간 서비스
+const wss = new WebSocketServer({ server });
+
+wss.on("connection", (ws) => {
+  console.log("클라이언트 연결");
+
+  //client에서 send 한 것을 받는 위치
+  ws.on("message", (data) => {
+    console.log(data.toString());
+  });
+
+  ws.on("close", () => {
+    console.log("클라이언트 연결 해제");
+  });
+});

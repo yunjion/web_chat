@@ -27,3 +27,14 @@
    - client.js
     - addEventListner("submit, "(event) => {})
     - addMessage
+3. WebSocket
+  1. `npm install ws`
+    - WebSocketServer, WebSocket
+    - server.js
+      - wss.on("connection, (ws) => {})
+        - ws.on("message",(data)=> {})
+        - ws.on("close", () => {})
+    -  client.js
+      - chatForm.addEventListner
+      - ws.onopen = () => {};
+      - ws.onclose = () => {};

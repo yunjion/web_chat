@@ -1,29 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>web chat</title>
+    <title>메시지</title>
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="app">
-      <header>
-        <h1>실시간 웹챗</h1>
+    <div class="phone-shell">
+      <div class="status-bar"><span>9:41</span><span class="dynamic-island"></span><span>▮▮▮　⌁　▰</span></div>
+      <div id="app">
+      <header class="conversation-header">
+        <button class="back-button" type="button" aria-label="뒤로 가기">‹</button>
+        <div class="contact">
+          <div class="avatar-stack" aria-hidden="true"><i>W</i><i>7</i><i>+</i></div>
+          <div>
+            <h1>Lucky 7</h1>
+            <p>온라인</p>
+          </div>
+        </div>
+        <button class="info-button" type="button" aria-label="영상 통화">▣</button>
       </header>
 
-      <ul id="messages"></ul>
+      <div class="date-divider"><span>오늘</span></div>
+      <ul id="messages" aria-live="polite"></ul>
 
       <form id="chat-form">
+        <button class="add-button" type="button" aria-label="첨부">＋</button>
         <input
           type="text"
           id="chat-input"
-          placeholder="메시지를 입력하세요"
+          placeholder="iMessage"
           autocapitalize="off"
         />
-        <button type="submit">보내기</button>
+        <button class="send-button" type="submit" aria-label="보내기">↑</button>
       </form>
+      </div>
     </div>
 
     <script src="client.js"></script>

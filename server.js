@@ -85,7 +85,17 @@ wss.on("connection", (ws) => {
 
   //client에서 send 한 것을 받는 위치
   ws.on("message", (data) => {
-    console.log(data.toString());
+    let json;
+    try {
+      json = JSON.parse(data);
+    } catch (error) {
+      return;
+    }
+    switch (json.type) {
+      case "chat":
+        console.log("chat 수신:", json.text);
+        break;
+    }
   });
 
   ws.on("close", () => {

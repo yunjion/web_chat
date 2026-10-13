@@ -14,27 +14,31 @@
      - server.listen()
 
    - index.html
-    - #app
-     - header
-     - ul#messages
-     - form#chat-form
-       - input#chat-input
-       - button
+   - #app
+   - header
+   - ul#messages
+   - form#chat-form
+     - input#chat-input
+     - button
    - reset.css
      - -
      - ul
    - style.css
    - client.js
-    - addEventListner("submit, "(event) => {})
-    - addMessage
+   - addEventListner("submit, "(event) => {})
+   - addMessage
+
 3. WebSocket
-  1. `npm install ws`
+4. `npm install ws`
+
+
     - WebSocketServer, WebSocket
     - server.js
       - wss.on("connection, (ws) => {})
         - ws.on("message",(data)=> {})
         - ws.on("close", () => {})
     -  client.js
-      - chatForm.addEventListner
+      - chatForm.addEventListner("submin", ...)
+        - ws.send({ type: "message,text}); //json -> string
       - ws.onopen = () => {};
       - ws.onclose = () => {};

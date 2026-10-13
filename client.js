@@ -17,9 +17,8 @@ form.addEventListener("submit", (event) => {
   const message = input.value.trim(); //앞 뒤 공백 자르기
   if (!message) return; //메시지 빈칸이면 return
 
-  ws.send(message); //서버로 message 날리기
-  addMessage(message);
-
+  //ws.send(message); //서버로 message 날리기
+  ws.send(JSON.stringify({ type: "message", text: message })); //json -> string화
   addMessage(message);
 
   input.value = "";

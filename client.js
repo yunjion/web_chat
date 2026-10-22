@@ -1,35 +1,47 @@
-const form = document.querySelector("#chat-form");
-const input = document.querySelector("#chat-input");
+const chatForm = document.querySelector("#chat-form");
+const chatInput = document.querySelector("#chat-input");
 const messages = document.querySelector("#messages");
 
 function addMessage(message) {
   const li = document.createElement("li");
-  li.classList.add("is-me");
   li.textContent = message;
-  messages.append(li);
-
-  messages.scrollTop = messages.scrollHeight;
+  messages.appendChild(li);
 }
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault(); //화면 깜빡거리는 기본동작 막기
+chatForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // 화면 깜빡거리는 기본동작 막기
 
-  const message = input.value.trim(); //앞 뒤 공백 자르기
+  const message = chatInput.value.trim(); // 앞 뒤 여백 자르기
+
   if (!message) return; //메시지 빈칸이면 return
 
-  //ws.send(message); //서버로 message 날리기
-  ws.send(JSON.stringify({ type: "message", text: message })); //json -> string화
+  // ws.send(message); //서버로 message 날리자
+  ws.send(JSON.stringify({ type: "chat", text: message })); // json -> string
   addMessage(message);
 
-  input.value = "";
-  input.focus();
+  chatInput.value = "";
+  chatInput.focus();
 });
-//-------------Welcome WebSocketServer World-------------
+
+//---------------Welcome WebSocket World-----------------
 const ws = new WebSocket(`ws://${location.host}`);
 
+// ws.on("open", () => {});
 ws.onopen = () => {
-  console.log("서버 연결ㄴ");
+  console.log("서버 연결");
+};
+ws.onmessage = (event) => {
+  //string -> json
+  const data = event.data;
+  const json = JSON.parse(data);
+
+  //type: chat -> 채팅창에 대화로 추가(li)
+  switch (json.type) {
+    case "chat":
+      console.log(json.text);
+      break;
+  }
 };
 ws.onclose = () => {
-  console.log("서버 연결 해체");
+  console.log("서버 연결 해제");
 };

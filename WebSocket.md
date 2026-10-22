@@ -90,3 +90,16 @@ S-->>B: 새 메시지를 바로 전달
         - WebSocket
           - ws.onopen = () => {};
           - ws.onclose = () => {};
+    2. Broadcast
+      - client A => Server => 모든 client
+      - client B => Server => 모든 client
+      - server.js
+        - 연결된 client 들 목록
+          - wss.on("connection",) 할때 client 추가
+          - ws.on("close", ) 할 때, client 삭제 
+        - message 수신 -> message 객체 -> broadcast()
+        - broadcastMessage = {type,text,id,timestamp}
+        - broadcast() = client 목록에서 WebSocket.OPEN인 client에게 send()
+      - clien.js
+        - message 송신 -> Server: send() when submit 
+        - message 수신(onmessage()) -> addMessage()

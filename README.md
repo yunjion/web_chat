@@ -30,15 +30,13 @@
 
 3. WebSocket
 4. `npm install ws`
-
-
-    - WebSocketServer, WebSocket
-    - server.js
-      - wss.on("connection, (ws) => {})
-        - ws.on("message",(data)=> {})
-        - ws.on("close", () => {})
-    -  client.js
-      - chatForm.addEventListner("submin", ...)
-        - ws.send({ type: "message,text}); //json -> string
-      - ws.onopen = () => {};
-      - ws.onclose = () => {};
+   - WebSocketServer, WebSocket
+   - server.js
+     - wss.on("connection, (ws) => {})
+       - ws.on("message",(data)=> {})
+       - ws.on("close", () => {})
+   - client.js
+   - chatForm.addEventListner("submin", ...)
+     - ws.send({ type: "message,text}); //json -> string
+   - ws.onopen = () => {};
+   - ws.onclose = () => {};

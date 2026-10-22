@@ -38,7 +38,9 @@ ws.onmessage = (event) => {
   //type: chat -> 채팅창에 대화로 추가(li)
   switch (json.type) {
     case "chat":
-      console.log(json.text);
+      //console.log(json.text);
+      //화면에 json.text를 보여주자
+      addMessage(json.text);
       break;
   }
 };
